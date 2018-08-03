@@ -169,6 +169,7 @@ class PyBambooHR(object):
             "benefitClassDate": ("date", ""),
             "benefitClassClass": ("list", ""),
             "benefitClassChangeReason": ("list", ""),
+            "customOrientation": ("list", ""),
         }
 
     def _format_employee_xml(self, employee):

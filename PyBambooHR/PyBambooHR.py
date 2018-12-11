@@ -11,6 +11,7 @@ to BambooHR API calls defined at http://www.bamboohr.com/api/documentation/.
 """
 
 import datetime
+import json
 import requests
 from . import utils
 from .utils import make_field_xml
@@ -493,11 +494,19 @@ class PyBambooHR(object):
         @return A dictionary with employee ID as key and a list of dictionaries, each dictionary showing
         the values of the table's fields for a particular date, which is stored by key 'date' in the dictionary.
         """
+        records = []
+
         url = self.base_url + 'employees/{}/tables/{}'.format(employee_id, table_name)
         r = requests.get(url, headers=self.headers, auth=(self.api_key, ''))
         r.raise_for_status()
 
-        return utils.transform_tabular_data(r.content)
+        data = json.loads(r.content.decode())
+
+        for row in data:
+            records.append(row[0])
+
+        #return utils.transform_tabular_data(r.content)
+        return records
 
     def get_employee_changes(self, since=None):
         """

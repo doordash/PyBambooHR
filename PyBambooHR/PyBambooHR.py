@@ -171,7 +171,8 @@ class PyBambooHR(object):
             "benefitClassClass": ("list", ""),
             "benefitClassChangeReason": ("list", ""),
             "customOrientation": ("list", ""),
-            "customPreferredDoorDashEmail": ("text", "")
+            "customPreferredDoorDashEmail": ("text", ""),
+            "customTeam": ("text", "")
         }
 
     def _format_employee_xml(self, employee):
